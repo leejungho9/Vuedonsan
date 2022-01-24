@@ -1,24 +1,121 @@
-# vuedongsan3
+# Vuedonsan 부동산 쇼핑몰 사이트
 
-## Project setup
-```
-npm install
+* vscode
+* node.js
+* vue3
+
+### node.js 설치 이유
+
+NPM (Node Package Manager)을 사용하기 위해서(NPM은 node.js 설치할 때 함께 설치됨)  
+NPM은 node의 모듈을 관리해주는 패키지 매니저로 패키지 업로드/다운로드 및 버전관리 기능을 제공함
+
+
+### package.json
+설치된 패키지의 버전, 프로젝트 설정 기록을 관리하는 폴더
+
+### node_modules 
+설치한 패키지가 실제 저장되어 있는 폴더
+
+### src
+소스코드를 담는 곳
+
+### 데이터 바인딩(Data Binding)
+데이터 바인딩은 HTML화면 요소에 뷰 인스턴스의 데이터를 연결하는 것
+> 데이터 바인딩 하는 이유 : 속성이 변경될 때마다 갱신됨  
+
+### {{ }} 콧수염 괄호
+텍스트 삽입 방식
+> HTML 속성 안에서는 {{ }} 를 사용하지 않고 : 을 사용함
+
+### v-bind
+데이터를 가져와 사용할 때 사용, v-bind 생략하고 콜론(:) 으로 사용 가능  
+
+### vue 반복문 (1)
+
 ```
 
-### Compiles and hot-reloads for development
+v-for = "작명 in 반복횟수" :key="작명"
+
 ```
-npm run serve
+1. array / object 를 넣을 수 있음 그렇게 되면 자료 안의 데이터 개수만큼 반복됨
+2. 작명한 변수는 데이터 안의 자료가 됨
+3. key용도는 반복문 돌린 요소를 구분하기 위해 사용
+
+### vue 반복문 (2)
+
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+v-for = "(작명1, 작명2 )in 반복횟수" :key="작명"
+
 ```
 
-### Lints and fixes files
+1. 작명은 2개까지 가능
+2. 왼쪽 변수는 array 내의 데이터, 오른쪽 변수는 1씩 증가하는 정수, i = 0, 1, 2 ....
+
+### 이벤트 핸들링 (@)
+* @click=“handler() : 인수를 넣어주지 않으면 이벤트객체가 넘어가고 handler(‘hi’)처럼 인수가 들어가면 들어간 인수를 넘겨줌
+* 만약 이벤트객체와 지정 텍스트를 같이 넘겨주고 싶다면 hadler (‘hi’, $evnet)를 사용
+
+### ※ 함수 생성 시 주의 사항
+함수 안에서 데이터를 사용할 때는 "this.데이터명" 으로 사용
+
+### Component 
+HTML을 한 단어로 축약해서 사용할 수 있게 함
+
+### Component 사용법
+* vue 파일을 만든 후 축약할 html 작성
+* 원하는 곳에서 import /component에 등록 / <사용/>
+
+### Component 사용하는 이유
+코드가 간결하고 깔끔해짐, 코드의 재사용이 쉬움
+그러나 데이터를 관리하기 복잡해짐, 그래서 데이터는 한 곳에 보관하고 필요하면 props 등으로 가져다 사용
+
+### props 
+자식 컴포넌트가 부모가 갖고 있는 데이터 전송 (부모 - 자식 데이터 통신)
+
+### ※ props 주의사항
+props로 받아온 데이터는 read-only , 수정할 수 없음  
+emit()을 사용해서 자식에서 부모로 데이터를 보내 부모에서 띄어주는 수 밖에 없음 
+
+### emit()
 ```
-npm run lint
+emit('작명' , 데이터)
+자식이 보낸 데이터를 부모에서 @작명 으로 받을 수 있음
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### watch 
+데이터를 감시하는 용도의 옵션 , 계산된 데이터도 감시 가능
+```
+watch {감시할 데이터() {
+  코드 작성
+}}
+```
+```
+watch {감시할 데이터(a, b) {
+  코드 작성
+}}
+a : 실제 변경 될 데이터
+b : 변경 전 
+```
+
+### Vue에서 제공하는 transition
+```
+<transition name="fade">
+  <span> transition </span>
+<transition>
+```
+ .fade-enter-from {} : 컴포넌트 실행될 때   
+ .fade-enter-active{} : 컴포넌트 실행부터 종료 시점까지  
+ .fade-enter-to {}  : 컴포넌트의 실행이 종료되는 시점  
+
+ .fade-leave-from {} : 컴포넌트 해제될 때  
+ .fade-leave-active{} : 컴포넌트가 해제되기 시작부터 종료까지  
+ .fade-leave-to {}  : 컴포넌트의 해제가 종료된 시점  
+
+
+
+
+
+
+
+
